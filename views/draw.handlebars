@@ -21,7 +21,6 @@
     var currentLevel;
     var datalist;
     var backgroundColor;
-    var dataArr=[];
 </script>
 
 <div id="2D"></div> <!-- For the 2D view -->
@@ -37,10 +36,11 @@
     var scene3d, camera3d, renderer, controls, light;
     var meshArr = [];
     var ang = 0.0;
-    var CANVAS_WIDTH = 600;
+    div3d=document.getElementById('div3D');
+    var CANVAS_WIDTH = 630;
     var CANVAS_HEIGHT = 300;
 </script>
-<script src="static/js/3Dmain.js"></script>
+<script src="/static/js/3Dmain.js"></script>
 
 <script>
     setup3d();
@@ -50,6 +50,6 @@
 
 <form action="/add" method="post">
     <textarea name="details" id="update" hidden></textarea>
-    Enter filename: <input type="text" value="filename" name="name" id="filename" required/>
+    Enter filename: <input type="text" value="filename" name="name" id="filename" required />
     <button type="submit" class="button" onclick="transmitData()"> SUBMIT DATA </button>
 </form>

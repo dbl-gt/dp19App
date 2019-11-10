@@ -1,7 +1,12 @@
 
 var itemCount = 0; // for automatic element naming
 
+///////////////////////////////// BuildingElement Class (Abstract) ///////////////////////////////
+// Abstract Class that defines all common or default behaviors for building elements /////////////
+//// Actual used classes will likely extend LinearElement or the simpler PointElement classes ////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 class BuildingElement {
+
     constructor(pts, rot, lev) {
         this.points = pts;
         this.rotation = rot;
@@ -13,6 +18,7 @@ class BuildingElement {
         this.color3d = this.constructor.color3d;
         this.selectcolor = this.constructor.selectcolor;
         this.opacity = this.constructor.opacity;
+
     };
 
     getHeights() {
@@ -61,7 +67,7 @@ class BuildingElement {
             var pixp1 = this.constructor.grid.indToPix(this.points[i]);
             //console.log("pixp1: " + pixp1.x + " " + pixp1.y);
             push();
-            translate(pixp1.x, pixp1.y)
+             translate(pixp1.x, pixp1.y)
             rotate(PI / 2.0 * this.rotation);
             translate(-pixp1.x, -pixp1.y); 
 
@@ -84,6 +90,7 @@ class BuildingElement {
         strokeWeight(10);
 
         // draw functionality - local coordinates point is now 0,0
+
         point(pixp1.x, pixp1.y);
 
     }
@@ -102,12 +109,21 @@ BuildingElement.addElement = function (pointList, rotation) {
     return true;
 }
 
+
+
 BuildingElement.color3d = "#aaaaaa";
 BuildingElement.color2d = "#aaaaaa";
 BuildingElement.selectcolor = "#ff0000";
 BuildingElement.opacity = 0.75;
 
+
+
+/////////////////////////////////////// PointElement Class (Abstract) //////////////////////////
+/////////////  Classes that behave like single (rotatable) points should extend this class /////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 class PointElement extends BuildingElement {
+
     checkSelect2D(mouseind) {
         if (mouseind.x == this.points[0].x && mouseind.y == this.points[0].y) {
             this.selected = !this.selected;
@@ -117,8 +133,19 @@ class PointElement extends BuildingElement {
 
 }
 
+
+
+
+// Abstract FurnitureElement class exists only to have a different furntitureGrid attached. It can be removed 
+// and FurnitureElement can inherit from PointElement
 class FurnitureElement extends PointElement {
+
 }
+
+
+///////////////////////////////// LinearElement Class (Abstract) ///////////////////////////////
+// Classes that behave like lines and polylines with 2 or more point should extend this class ///
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 function pointInLine(p0, p1, vpm) {
     //vector math - determines whether mouse is on line and between points (don't worry about it)
@@ -144,8 +171,7 @@ class LinearElement extends BuildingElement {
         let vpm = createVector(mouseind.x, mouseind.y);
         for (var i = 0; i < this.points.length - 1; i++) {
             if (pointInLine(this.points[i], this.points[i + 1], vpm)) {
-                this.selected = true; 
-                return true;
+                this.selected = true; return true;
             }
         }
         return false;
@@ -153,6 +179,7 @@ class LinearElement extends BuildingElement {
 }
 
 LinearElement.addElement = function (pointList, rotation) {
+
     if (pointList.length == 2) {
         bldgElems.push(new this(pointList, rotation, currentLevel));
         return true;

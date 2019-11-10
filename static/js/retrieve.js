@@ -27,7 +27,7 @@ function addLights3d() {
     light.shadow.mapSize.height = t * 100;
     light.castShadow = true;
     scene3d.add(light);
-    var l2 = new THREE.PointLight(0xffffff, 0.15, 200);
+    var l2 = new THREE.AmbientLight(0xffffff, 0.55, 200);
     l2.position.set(0, 0, 50);
     scene3d.add(l2);
 }
