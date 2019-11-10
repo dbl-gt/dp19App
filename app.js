@@ -40,7 +40,7 @@ app.get('/draw', (req, res) => {
 app.get('/retrieve', (req, res) => {
     var names = [];
     var dataArr = [];
-    fs.readdir('static/data', function (err, files) {
+    fs.readdir('static/data', (err, files) =>{
         if (err) {
             return console.log('Unable to scan directory: ' + err);
         }
