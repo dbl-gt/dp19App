@@ -44,11 +44,12 @@ SELECT OPTION TO DISPLAY
 
 <script>
     var m = new THREE.MeshPhongMaterial({ color: 0x1a2eff, opacity: 0.75, transparent: true, side: THREE.DoubleSide });
+    var wood=new THREE.TextureLoader().load("/static/assets/img/wood.jpg");
     var chair;
     var mtl = new THREE.MTLLoader().load("/static/assets/model/chair.mtl", (material) => {
         var obj = new THREE.OBJLoader().load("/static/assets/model/chair.obj", (object) => {
             object.material = m;
-            object.scale.set(2, 2, 2);
+            object.scale.set(1.5, 1.5, 1.5);
             object.position.set(0, 0, 0);
             object.rotation.x = Math.PI / 2;
             chair=object.clone();

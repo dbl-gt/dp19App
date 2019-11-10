@@ -27,8 +27,8 @@ function addLights3d() {
     light.shadow.mapSize.height = t * 100;
     light.castShadow = true;
     scene3d.add(light);
-    var l2 = new THREE.PointLight(0xffffff);
-    l2.position.set(0, 0, 10);
+    var l2 = new THREE.PointLight(0xffffff, 0.15, 200);
+    l2.position.set(0, 0, 50);
     scene3d.add(l2);
 }
 
@@ -80,7 +80,7 @@ function retdraw() {
                     bevelEnabled: false
                 }
                 var g = new THREE.ExtrudeBufferGeometry(s, e);
-                var m = new THREE.MeshPhongMaterial({ color: 0xaa4e77, opacity: 0.75, transparent: true, side: THREE.DoubleSide });
+                var m = new THREE.MeshPhongMaterial({ color: 0xaa4e77, map:wood, opacity: 0.75, transparent: true, side: THREE.DoubleSide });
                 var me = new THREE.Mesh(g, m);
                 me.position.set(x0, y0, 0);
                 me.castShadow = true;
@@ -111,14 +111,15 @@ function retdraw() {
             }
             else if (jsonArr[i].type.toLowerCase() === "chair") {
                 var g = new THREE.SphereGeometry(1, 20, 20);
-                var m = new THREE.MeshPhongMaterial({ color: 0x1a2eff, opacity: 0.75, transparent: true, side: THREE.DoubleSide });
+                var m = new THREE.MeshBasicMaterial({color: 0x1a2eff, map:wood, side: THREE.DoubleSide});
                 var coordArr = jsonArr[i].coords.split(';');
                 var x0 = parseFloat(coordArr[0].split(',')[0]);
                 var y0 = parseFloat(coordArr[0].split(',')[1]);
                 var me = new THREE.Mesh(g, m);
                 chair2=chair.clone();
+                chair2.material=m;
                 chair2.position.set(x0,y0,1);
-                scene3d.add(chair2);
+                meshArr.push(chair2);
             }
         }
     }
