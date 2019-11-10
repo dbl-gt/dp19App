@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+
+        }
+
+        td {
+            border-style: solid;
+            border-color: darkslategrey;
+            border-width: 1px;
+            width: 50px;
+        }
+
+        #objCreateOrEdit {
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            visibility: hidden;
+            background-color: lightcyan;
+            box-shadow: 5px 10px #888888;
+        }
+
+
+        #div3D {
+            position: absolute;
+            top: 5px;
+            left: 630px;
+            width: 600px;
+            height: 300px;
+            background-color: pink;
+        }
+
+        #divLevel3D {
+            position: absolute;
+            top: 320px;
+            left: 630px;
+            width: 300px;
+            height: 180px;
+
+        }
+
+        .button {
+            margin-left: 10%;
+            margin-top: 20px;
+            background-color: rgb(200,200,200); 
+            border: 2px solid #000000;
+            color: black;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #4CAF50;
+            color: blue;
+        }
+
+        input[type=text] {
+            width: 80px;
+        }
+    </style>
+
+    <script src="/static/libs/p5.min.js"></script>
+    <script src="/static/libs/three.min.js"></script>
+    <script src="/static/libs/OrbitControls.js"></script>
+    <script src="/static/libs/OBJLoader.js"></script>
+    <script src="/static/libs/MTLLoader.js"></script>
+
+</head>
+
+<body>
+    <a href="/" style="margin-left:150px">Home Page</a>
+    <a href="/draw" style="margin-left:15px">Draw Page</a>
+    <a href="/help" style="margin-left:15px">Help Page</a>
+    <a href="/retrieve" style="margin-left:15px">Retrieve Data</a>
+
+    {{{body}}}
+</body>
+
+</html>
